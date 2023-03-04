@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 { 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        //Тут должна быть ваша обработка попадания
-        //Вместо этого условия необходимо ваше, которое определит, что
-        //в Collision находится именно тот объект, который вам нужен
-        if (other==null)
+        if (collision.gameObject.tag == "Enemy")
         {
-           Destroy(gameObject);
-            
+            Destroy(gameObject);
+        }else
+        {
+            Destroy(gameObject, 2f);
         }
     }
 }
