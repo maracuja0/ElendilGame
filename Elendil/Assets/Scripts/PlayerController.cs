@@ -7,9 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float speed = 5f;
-    private float vertical;
-    private float horizontal;
-
+    public Animator anim;
     public FixedJoystick joystick;
     private Vector2 direction;
 
@@ -17,25 +15,21 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
     }
 
     // Update is called once per frame
     void Update()
     {
+        direction.x = joystick.Horizontal;
+        direction.y = joystick.Vertical;
 
-        horizontal = joystick.Horizontal;
-        vertical = joystick.Vertical;
-        Vector2 move = new Vector2(horizontal, vertical);
+        anim.SetFloat("MoveX", direction.x);
+        anim.SetFloat("MoveY", direction.y);
+        anim.SetFloat("Speed", direction.sqrMagnitude);
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        //rb.AddForce(direction * speed * Time.deltaTime, Force); 
-        Vector2 position = rb.position;
-        position.x = position.x + speed * horizontal * Time.deltaTime;
-        position.y = position.y + speed * vertical * Time.deltaTime;
-
-        rb.MovePosition(position);
+        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 }
