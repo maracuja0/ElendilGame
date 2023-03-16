@@ -12,16 +12,20 @@ public class PlayerController : MonoBehaviour
     public FixedJoystick joystick;
     private Vector2 direction;
 
-    public GameObject gun;
-    public float bulletForce = 10f;
+    public int damage = 1;
 
-    public GameObject bulletPrefab;
-    public Transform spawnPoint;
+    // public GameObject gun;
+    // public float bulletForce = 10f;
 
-    public GameObject enemy;
+    // public GameObject bulletPrefab;
+    // public Transform spawnPoint;
 
-    public GameObject[] enemyes = new GameObject[3];
-    private GameObject target;
+    // public GameObject enemy;
+
+    // public GameObject[] enemyes = new GameObject[3];
+
+    // public List<GameObject> Enemyes = new List<GameObject>();
+    // private GameObject target;
 
     // Start is called before the first frame update
     void Start()
@@ -32,27 +36,30 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        target = enemyes[0];
+        // target = enemyes[0];
         direction.x = joystick.Horizontal;
         direction.y = joystick.Vertical;
 
         anim.SetFloat("MoveX", direction.x);
         anim.SetFloat("MoveY", direction.y);
         anim.SetFloat("Speed", direction.sqrMagnitude);
-        Debug.Log(enemy.transform.position);
+        // Debug.Log(enemy.transform.position);
 
-        for(int i = 0; i < enemyes.Length; i++ ){
-            if(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(enemyes[i].transform.position.x, enemyes[i].transform.position.y)) <
-            Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(target.transform.position.x, target.transform.position.y))){
-                target = enemyes[i];
-            }
-        }
+        // for(int i = 0; i < enemyes.Length; i++ ){
+        //     if(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(enemyes[i].transform.position.x, enemyes[i].transform.position.y)) <
+        //     Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(target.transform.position.x, target.transform.position.y))){
+        //         target = enemyes[i];
+        //     }
+        // }
 
-        Vector3 autoAim = (target.transform.position - transform.position).normalized;
-        float angle = Mathf.Atan2(autoAim.y, autoAim.x) * Mathf.Rad2Deg -90f;
-        gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        // Vector3 autoAim = (target.transform.position - transform.position).normalized;
+        // float angle = Mathf.Atan2(autoAim.y, autoAim.x) * Mathf.Rad2Deg -90f;
+        // gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
+    public int GetDamage(){
+        return damage;
+    }
     void FixedUpdate()
     {
         move();
@@ -71,11 +78,11 @@ public class PlayerController : MonoBehaviour
 
     // }
 
-    public void Shoot(){
-        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, gun.transform.rotation);
-        Rigidbody2D Bullet = bullet.GetComponent<Rigidbody2D>();
-        Bullet.AddForce(spawnPoint.up * bulletForce, ForceMode2D.Impulse);
-    }
+    // public void Shoot(){
+    //     GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, gun.transform.rotation);
+    //     Rigidbody2D Bullet = bullet.GetComponent<Rigidbody2D>();
+    //     Bullet.AddForce(spawnPoint.up * bulletForce, ForceMode2D.Impulse);
+    // }
 
     //МБ ПРИГОДИТСЯ
     
