@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3006971539823395303}
   - component: {fileID: 3968937238372872228}
   - component: {fileID: 3101156853068092421}
-  - component: {fileID: 8632332120275701861}
+  - component: {fileID: 3707516513317785772}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,7 +135,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8632332120275701861
+--- !u!114 &3707516513317785772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,20 +144,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2422274007564688882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e45f1e14c2c2f7d4c83d1a1ef3f48eac, type: 3}
+  m_Script: {fileID: 11500000, guid: 73c3d193f1c634445a6e1afeda96ffff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
-  currentHealth: 0
+  maxHealth: 10
+  moveSpeed: 2
   target: {fileID: 3850496205309965711, guid: 62f91c3e539d622428b83a311c789268, type: 3}
   lookRadius: 6
   attackRadius: 3
-  attackDelay: 1
-  moveSpeed: 5
+  attackDelay: 2
   bulletPrefab: {fileID: 8703207232456304927, guid: 64715acf712d0254a9d987ac74c19192, type: 3}
-  bulletSpeed: 5
-  gun: {fileID: 9126564865971192071}
-  spawnPoint: {fileID: 8605811627641185501}
+  bulletSpeed: 0
+  gun: {fileID: 0}
+  spawnPoint: {fileID: 0}
 --- !u!1 &4754518186207665807
 GameObject:
   m_ObjectHideFlags: 0
