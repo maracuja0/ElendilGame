@@ -146,3 +146,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45f1e14c2c2f7d4c83d1a1ef3f48eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 4
+  currentHealth: 0
+  target: {fileID: 3850496205309965711, guid: 62f91c3e539d622428b83a311c789268, type: 3}
+  moveSpeed: 5
+  attackRange: 2
+  bulletPrefab: {fileID: 8703207232456304927, guid: 64715acf712d0254a9d987ac74c19192, type: 3}
+  bulletSpeed: 10
+  fireRate: 1
