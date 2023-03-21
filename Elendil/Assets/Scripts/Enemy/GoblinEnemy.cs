@@ -33,7 +33,6 @@ public class GoblinEnemy : BaseEmeny
     {
         base.Update();
 
-        Debug.Log(currentHealth);
 
         float distance = Vector3.Distance(target.position, transform.position);
 
@@ -64,9 +63,7 @@ public class GoblinEnemy : BaseEmeny
         // bulletScript.speed = bulletSpeed;
         // bulletScript.SetDamage(this.damage);
 
-        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, gun.transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
         Bullet bulletScript = bullet.GetComponent<Bullet>();
-        bulletScript.speed = 10f;
-        bulletScript.SetDamage(this.damage);
     }
 }

@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public FixedJoystick joystick;
     private Vector2 direction;
 
+    public int maxHealth = 10;
+    protected float currentHealth = 0f;
+
     public int damage = 1;
 
     // public GameObject gun;
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -55,6 +59,51 @@ public class PlayerController : MonoBehaviour
         // Vector3 autoAim = (target.transform.position - transform.position).normalized;
         // float angle = Mathf.Atan2(autoAim.y, autoAim.x) * Mathf.Rad2Deg -90f;
         // gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Collider2D collider = collision;
+        // if (collider.tag == Tag.BULLET)
+        // {
+        //     Bullet bullet = collider.GetComponent<Bullet>();
+        //     if (bullet != null)
+        //     {
+        //         this.TakeDamage(bullet.GetDamage(), collider);
+        //     }
+        // }
+
+        if (collision.tag == Tag.ENEMY_BULLET)
+        {
+            TakeDamage(1);
+        }
+
+        //if (collider.tag == Tag.SWORD)
+        // {
+        //     SwordAttack swordAttack = collider.GetComponent<SwordAttack>();
+        //     if (swordAttack.attacking)
+        //     {
+        //         Debug.Log("Attacked" + swordAttack.baseWeapon.damage);
+        //         swordAttack.attacking = false;
+        //         this.GotDamage(swordAttack.baseWeapon.damage, collider);
+        //     }
+        // }
+    }
+    protected void TakeDamage(float damage)
+    {
+        // this.OnAttacked(collider);
+        if (currentHealth >= damage)
+        {
+            currentHealth -= damage;
+        } else
+        {
+            currentHealth = 0;
+            // this.Die();
+        }
+    }
+
+    // protected virtual void OnAttacked(Collider2D collider) {}
+    protected virtual void Die() {
+        Destroy(gameObject);
     }
 
     public int GetDamage(){

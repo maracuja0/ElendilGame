@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Polyana
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 74
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -470163373, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 247089057, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -285819622, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 1520815079, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -1875016212, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -1197230274, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 332599867, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 215704436, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 2082524868, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 1727595140, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 1506571520, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -1305187516, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 40273806, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 509738260, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -407433541, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 919763347, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -205796505, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -1443944697, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 869558882, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 2095426181, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -1786690361, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 299073625, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 1445948809, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -959693381, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 714144334, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 1159313021, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 916468481, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -961478791, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 1184275277, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -635960071, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 1786172049, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 150155782, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -1903804415, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 865856190, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 1182090403, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: 695414794, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - textury5_29
+  - textury5_35
+  - textury5_34
+  - textury5_0
+  - textury5_1
+  - textury5_2
+  - textury5_3
+  - textury5_4
+  - textury5_5
+  - textury5_6
+  - textury5_7
+  - textury5_8
+  - textury5_9
+  - textury5_13
+  - textury5_12
+  - textury5_11
+  - textury5_10
+  - textury5_26
+  - textury5_17
+  - textury5_27
+  - textury5_16
+  - textury5_24
+  - textury5_15
+  - textury5_25
+  - textury5_14
+  - textury5_22
+  - textury5_23
+  - textury5_20
+  - textury5_19
+  - textury5_21
+  - textury5_18
+  - textury5_31
+  - textury5_30
+  - textury5_33
+  - textury5_28
+  - textury5_32
+  m_RenderDataMap: {}
+  m_Tag: Polyana
+  m_IsVariant: 0
