@@ -6,14 +6,25 @@ public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    // public float fireRate = 0.2f;
+    public GameObject lightningPrefab;
     public float range = 10f;
     public int damage = 10;
-    // public Canvas fireButtonCanvas;
+
+
+    // public float lightningRadius = 10f;
+    // public float lightningRange = 2f;
+    // public int maxBounces = 3;
+    // private float nextFireTime = 5f;
 
     // private float nextFireTime = 0f;
-    private GameObject nearestEnemy;
-
+    public GameObject nearestEnemy;
+    public GameObject NearestEnemy{
+        get
+        {
+            return this.nearestEnemy;
+        }
+    }
+    
     void Update()
     {
         // Находим ближайшего врага
@@ -34,9 +45,9 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    GameObject FindNearestEnemy()
+    public GameObject FindNearestEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tag.ENEMY);
         GameObject nearestEnemy = null;
         float nearestEnemyDistance = Mathf.Infinity;
 
@@ -55,18 +66,29 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
-        // Создаем пулю и задаем ей скорость
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
-        bulletScript.speed = 10f;
-
-        // // Наносим урон врагу, если пуля столкнулась с врагом
-        // RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, transform.up, range);
-        // if (hitInfo.collider != null && hitInfo.collider.isTrigger)
-        // {
-        //     EnemyController enemy = hitInfo.collider.gameObject.GetComponent<EnemyController>();
-        //     enemy.TakeDamage(damage);
-        // }
     }
+
+    public void ArcLightning()
+    {
+        LightningBullet lightningScript = lightningPrefab.GetComponent<LightningBullet>();
+        lightningScript.SetTarget(nearestEnemy);
+        if(nearestEnemy != null){
+            GameObject lightning = Instantiate(lightningPrefab, firePoint.position, firePoint.rotation);
+        }
+        
+    }
+
+
+
+    // public void LightningSkill(){
+    //     GameObject lightning = Instantiate(lightningPrefab, firePoint.position, firePoint.rotation);
+    //     int currentBounces = 0; 
+    //     while(currentBounces < maxBounces){
+    //         if (){
+
+    //         }
+    //     }
+    // }
 }
 
