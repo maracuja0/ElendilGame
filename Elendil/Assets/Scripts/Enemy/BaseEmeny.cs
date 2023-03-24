@@ -8,25 +8,36 @@ public class BaseEmeny : MonoBehaviour
     Блок переменных, отвечающиай за здоровье врага
     */
     public int maxHealth = 10;
-    protected float currentHealth = 0f;
+    protected int currentHealth = 0;
 
     /*
     Блок переменных, отвечающиай за зпередвижение врага
     */
     public float moveSpeed = 2f;
 
-    public float damage = 1f;
+    public int damage = 1;
 
     // Сюда надо вставить текстовое поле для вывода HP врага
     // public Slider healthbar;
 
-    //функция получения текущего здоровья героя
-    public float health
-    {
-        get { return currentHealth; }
+    /*
+    /Геттеры
+    */
+    public int GetDamage(){
+        return this.damage;
     }
 
-    // Use this for initialization
+    public int GetHealth(){
+        return this.currentHealth;
+    }
+
+    /*
+    /Сеттеры
+    */
+    public void SetDamage(int damage){
+        this.damage = damage;
+    }
+
     protected void Start()
     {
         currentHealth = maxHealth;
@@ -55,6 +66,8 @@ public class BaseEmeny : MonoBehaviour
         if (collision.tag == Tag.BULLET)
         {
             TakeDamage(1);
+        }else if(collision.tag == Tag.ARC_LIGHTNING){
+            TakeDamage(5);
         }
 
         //if (collider.tag == Tag.SWORD)
@@ -69,10 +82,10 @@ public class BaseEmeny : MonoBehaviour
         // }
     }
 
-    protected void TakeDamage(float damage)
+    protected void TakeDamage(int damage)
     {
         // this.OnAttacked(collider);
-        if (currentHealth >= damage)
+        if (currentHealth > damage)
         {
             currentHealth -= damage;
         } else
@@ -83,7 +96,7 @@ public class BaseEmeny : MonoBehaviour
     }
 
     // protected virtual void OnAttacked(Collider2D collider) {}
-    protected virtual void Die() {
+    private void Die() {
         Destroy(gameObject);
     }
 }

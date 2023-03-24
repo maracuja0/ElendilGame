@@ -10,7 +10,7 @@ public class GoblinEnemy : BaseEmeny
     public Transform target; 
     public float lookRadius = 10f;
     public float attackRadius = 2f;
-    public float attackDelay = 2f;
+    public float attackDelay = 1f;
     public GameObject bulletPrefab;
     public float bulletSpeed;
     public float attackTimer = 0f; 
@@ -25,7 +25,7 @@ public class GoblinEnemy : BaseEmeny
     new void Start()
     {
         base.Start();
-        base.damage = 2f;
+        base.damage = 2;
     }
 
     // Update is called once per frame

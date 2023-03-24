@@ -12,4 +12,5 @@ public static class Tag
     public const string BULLET = "Bullet";
     public const string ENEMY_BULLET = "EnemyBullet";
     public const string ENEMY_SWORD = "EnemySword";
+    public const string ARC_LIGHTNING = "ArcLightning";
 }
