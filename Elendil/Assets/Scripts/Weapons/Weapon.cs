@@ -10,6 +10,10 @@ public class Weapon : MonoBehaviour
     public float range = 10f;
     public int damage = 10;
     public GameObject nearestEnemy;
+
+    public float cooldownTime = 5f;
+    private bool isCooldown = false;
+    public float radius = 10f;
     
     void Update()
     {
@@ -55,6 +59,33 @@ public class Weapon : MonoBehaviour
 
         if(nearestEnemy != null){
             GameObject lightning = Instantiate(lightningPrefab, firePoint.position, firePoint.rotation);
+        }
+    }
+
+    //переписать под свой стиль кода
+
+    public void ThundergodsWrath(){
+        if (!isCooldown)
+        {
+            // Нанести урон врагам
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.gameObject.CompareTag(Tag.ENEMY))
+                {
+                    collider.gameObject.GetComponent<BaseEmeny>().TakeDamage(damage);
+                }
+            }
+
+            // Запустить перезарядку
+            StartCoroutine(Cooldown());
+        }
+
+        IEnumerator Cooldown()
+        {
+            isCooldown = true;
+            yield return new WaitForSeconds(cooldownTime);
+            isCooldown = false;
         }
     }
 }
