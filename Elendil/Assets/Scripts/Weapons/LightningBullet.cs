@@ -51,7 +51,7 @@ public class LightningBullet : MonoBehaviour
         }
     }
 
-    GameObject FindNextTarget(GameObject currentTarget)
+    private GameObject FindNextTarget(GameObject currentTarget)
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tag.ENEMY);
         GameObject nextTarget = null;

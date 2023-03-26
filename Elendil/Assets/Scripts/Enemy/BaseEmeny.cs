@@ -82,7 +82,7 @@ public class BaseEmeny : MonoBehaviour
         // }
     }
 
-    protected void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         // this.OnAttacked(collider);
         if (currentHealth > damage)
