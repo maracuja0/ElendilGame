@@ -7,7 +7,7 @@ public class LightningBullet : MonoBehaviour
     private float damage = 5f;
     public float speed = 2f;
     public int maxBounces = 3;
-    private float bounceRange = 10f;
+    private float bounceRange = 15f;
     public int currentBounces = 0 ;
     public GameObject nextTarget;
     public GameObject target;
@@ -25,14 +25,20 @@ public class LightningBullet : MonoBehaviour
     }
     void Update()
     {
-        transform.position += direction * speed * Time.deltaTime;
-        rotation = target.transform.position - transform.position;
-        transform.up = rotation;
+        if (target != null){
+            direction = (target.transform.position - transform.position).normalized;
+            transform.position += direction * speed * Time.deltaTime;
+            rotation = target.transform.position - transform.position;
+            transform.up = rotation;
+        }else{
+            Destroy(gameObject);
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag(Tag.ENEMY))
         {
             currentBounces++;
             if (currentBounces > maxBounces)
@@ -41,13 +47,16 @@ public class LightningBullet : MonoBehaviour
             }else if(FindNextTarget(target) == null)
             {
                 Destroy(gameObject);
+            }else if(Vector2.Distance(transform.position, target.transform.position) > bounceRange){
+                Destroy(gameObject);
             }
             else
             {
                 hitTargets.Add(target);
                 target = FindNextTarget(target);
-                direction = (target.transform.position - transform.position).normalized;
             }
+        }else if(collision.gameObject.CompareTag(Tag.WALL)){
+            Destroy(gameObject);
         }
     }
 
@@ -59,13 +68,8 @@ public class LightningBullet : MonoBehaviour
 
         foreach (GameObject enemy in enemies)
         {
-            if (enemy == currentTarget || hitTargets.Contains(enemy) || (Vector2.Distance(transform.position, enemy.transform.position) > bounceRange))
-            {
-                continue;
-            }
-
             float distance = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distance < nearestEnemyDistance)
+            if (distance < nearestEnemyDistance && distance < bounceRange && !hitTargets.Contains(enemy) && enemy != currentTarget)
             {
                 nextTarget = enemy;
                 nearestEnemyDistance = distance;

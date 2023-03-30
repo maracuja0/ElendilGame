@@ -5,7 +5,6 @@ using UnityEngine;
 public class FrameSwitch : MonoBehaviour
 {
     public GameObject activeFrame;
-    // Start is called before the first frame update
 
     void OnTriggerEnter2D(Collider2D other)
     {
