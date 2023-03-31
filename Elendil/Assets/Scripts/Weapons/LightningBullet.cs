@@ -16,13 +16,17 @@ public class LightningBullet : MonoBehaviour
     public Rigidbody2D rb;
     private List<GameObject> hitTargets = new List<GameObject>();
     
-    void Start()
-    {
-        direction = (target.transform.position - transform.position).normalized;
-    }
     public void SetTarget(GameObject currentTarget){
         this.target = currentTarget;
     }
+
+    void Start()
+    {
+        if (target != null){
+            direction = (target.transform.position - transform.position).normalized;
+        }
+    }
+    
     void Update()
     {
         if (target != null){
@@ -44,20 +48,25 @@ public class LightningBullet : MonoBehaviour
             if (currentBounces > maxBounces)
             {
                 Destroy(gameObject);
-            }else if(FindNextTarget(target) == null)
-            {
-                Destroy(gameObject);
-            }else if(Vector2.Distance(transform.position, target.transform.position) > bounceRange){
-                Destroy(gameObject);
             }
             else
             {
                 hitTargets.Add(target);
                 target = FindNextTarget(target);
+                if (target == null)
+                {
+                    Destroy(gameObject);
+                }
+                else if (Vector2.Distance(transform.position, target.transform.position) > bounceRange)
+                {
+                    Destroy(gameObject);
+                }
             }
-        }else if(collision.gameObject.CompareTag(Tag.WALL)){
-            Destroy(gameObject);
-        }
+    }
+    else if (collision.gameObject.CompareTag(Tag.WALL))
+    {
+        Destroy(gameObject);
+    }
     }
 
     private GameObject FindNextTarget(GameObject currentTarget)

@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }else{
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 1f);
         }
     }
 
