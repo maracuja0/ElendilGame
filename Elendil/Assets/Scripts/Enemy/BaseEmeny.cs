@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseEmeny : MonoBehaviour
 {
     /*
-    Блок переменных, отвечающиай за здоровье врага
+    Блок переменных, отвечающий за здоровье врага
     */
     public int maxHealth = 10;
     protected int currentHealth = 0;
