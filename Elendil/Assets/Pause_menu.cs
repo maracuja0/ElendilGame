@@ -11,6 +11,8 @@ public class Pause_menu : MonoBehaviour
     public GameObject pauseMenuUI;
     public Button restartButton;
 
+    public Button pauseButton;
+
     private void Start()
     {
         restartButton.onClick.AddListener(RestartGame);
@@ -19,16 +21,21 @@ public class Pause_menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+        // if (Input.GetKeyDown(KeyCode.Escape))
+        // {
+        //     if (GameIsPaused)
+        //     {
+        //         Resume();
+        //     }
+        //     else
+        //     {
+        //         Pause();
+        //     }
+        // }
+        if(GameIsPaused){
+            pauseButton.onClick.AddListener(Resume);
+        }else{
+            pauseButton.onClick.AddListener(Pause);
         }
     }
 

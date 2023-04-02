@@ -11,11 +11,12 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public FixedJoystick joystick;
     private Vector2 direction;
-
     public int maxHealth = 10;
     protected float currentHealth = 0f;
 
     public int damage = 1;
+
+    public Death_menu death;
 
     /*
     /Геттеры
@@ -91,13 +92,15 @@ public class PlayerController : MonoBehaviour
         } else
         {
             currentHealth = 0;
-            // this.Die();
+            this.Die();
         }
     }
 
     // protected virtual void OnAttacked(Collider2D collider) {}
     private void Die() {
-        Destroy(gameObject);
+        //установить состояние аниматора на смерть
+        // gameObject.SetActive(false);
+        death.Death();
     }
 
     
