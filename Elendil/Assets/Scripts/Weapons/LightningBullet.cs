@@ -7,7 +7,7 @@ public class LightningBullet : MonoBehaviour
     private float damage = 5f;
     public float speed = 2f;
     public int maxBounces = 3;
-    private float bounceRange = 10f;
+    private float bounceRange = 15f;
     public int currentBounces = 0 ;
     public GameObject nextTarget;
     public GameObject target;
@@ -16,29 +16,36 @@ public class LightningBullet : MonoBehaviour
     public Rigidbody2D rb;
     private List<GameObject> hitTargets = new List<GameObject>();
     
-    void Start()
-    {
-        direction = (target.transform.position - transform.position).normalized;
-    }
     public void SetTarget(GameObject currentTarget){
         this.target = currentTarget;
     }
+
+    void Start()
+    {
+        if (target != null){
+            direction = (target.transform.position - transform.position).normalized;
+        }
+    }
+    
     void Update()
     {
-        transform.position += direction * speed * Time.deltaTime;
-        rotation = target.transform.position - transform.position;
-        transform.up = rotation;
+        if (target != null){
+            direction = (target.transform.position - transform.position).normalized;
+            transform.position += direction * speed * Time.deltaTime;
+            rotation = target.transform.position - transform.position;
+            transform.up = rotation;
+        }else{
+            Destroy(gameObject);
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag(Tag.ENEMY))
         {
             currentBounces++;
             if (currentBounces > maxBounces)
-            {
-                Destroy(gameObject);
-            }else if(FindNextTarget(target) == null)
             {
                 Destroy(gameObject);
             }
@@ -46,9 +53,20 @@ public class LightningBullet : MonoBehaviour
             {
                 hitTargets.Add(target);
                 target = FindNextTarget(target);
-                direction = (target.transform.position - transform.position).normalized;
+                if (target == null)
+                {
+                    Destroy(gameObject);
+                }
+                else if (Vector2.Distance(transform.position, target.transform.position) > bounceRange)
+                {
+                    Destroy(gameObject);
+                }
             }
-        }
+    }
+    else if (collision.gameObject.CompareTag(Tag.WALL))
+    {
+        Destroy(gameObject);
+    }
     }
 
     private GameObject FindNextTarget(GameObject currentTarget)
@@ -59,13 +77,8 @@ public class LightningBullet : MonoBehaviour
 
         foreach (GameObject enemy in enemies)
         {
-            if (enemy == currentTarget || hitTargets.Contains(enemy) || (Vector2.Distance(transform.position, enemy.transform.position) > bounceRange))
-            {
-                continue;
-            }
-
             float distance = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distance < nearestEnemyDistance)
+            if (distance < nearestEnemyDistance && distance < bounceRange && !hitTargets.Contains(enemy) && enemy != currentTarget)
             {
                 nextTarget = enemy;
                 nearestEnemyDistance = distance;
