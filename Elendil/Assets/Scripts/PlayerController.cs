@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public FixedJoystick joystick;
     private Vector2 direction;
     public int maxHealth = 10;
-    protected float currentHealth = 0f;
+    public float currentHealth = 0f;
 
     public int damage = 1;
 
@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
         move();
     }
 
+    [SerializeField] private HealthBar healthBar;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Collider2D collider = collision;
@@ -94,6 +96,7 @@ public class PlayerController : MonoBehaviour
             currentHealth = 0;
             this.Die();
         }
+        healthBar.UpdateHealthBar(maxHealth, currentHealth);
     }
 
     // protected virtual void OnAttacked(Collider2D collider) {}
