@@ -4,31 +4,25 @@ using UnityEngine;
 
 public class GoblinEnemy : BaseEmeny
 {
-    /*
-    Блок переменных, отвечающиай за здоровье врага
-    */
     public Transform target; 
     public float lookRadius = 10f;
     public float attackRadius = 2f;
-    public float attackDelay = 1f;
+    public float attackDelay = 0.5f;
     public GameObject bulletPrefab;
     public float bulletSpeed;
     public float attackTimer = 0f; 
 
-    /*
-    Блок переменных, отвечающиай за вращение оружия и спавн снарядов
-    */
+    public Rigidbody2D rb;
     public GameObject gun;
     public Transform spawnPoint;
 
-    // Start is called before the first frame update
     new void Start()
     {
         base.Start();
         base.damage = 2;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     new void Update()
     {
         base.Update();
@@ -38,8 +32,9 @@ public class GoblinEnemy : BaseEmeny
 
         if (distance <= lookRadius) {
 
-            Vector3 direction = (target.position - transform.position).normalized;
-            transform.Translate(direction * moveSpeed * Time.deltaTime);
+            Vector2 direction = (target.position - transform.position).normalized;
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+        
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
@@ -47,6 +42,7 @@ public class GoblinEnemy : BaseEmeny
             attackTimer += Time.deltaTime;
 
             if (distance <= attackRadius) {
+                rb.MovePosition(rb.position + direction * 0 * Time.fixedDeltaTime);
                 if (attackTimer >= attackDelay) {
                     Attack();
                     attackTimer = 0f;
@@ -56,14 +52,9 @@ public class GoblinEnemy : BaseEmeny
     }
 
     private void Attack(){
-        // Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-        // // Задаем скорость пули
-        // Bullet bulletScript = bullet.GetComponent<Bullet>();
-        // bulletScript.speed = bulletSpeed;
-        // bulletScript.SetDamage(this.damage);
-
+        EnemyBullet bulletScript = bulletPrefab.GetComponent<EnemyBullet>();
+        bulletScript.SetDamage(damage);
+        bulletScript.SetSpeed(10);
         GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
     }
 }

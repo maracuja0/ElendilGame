@@ -52,5 +52,5 @@
         "temp/":true,
         "Temp/":true
     },
-    "CodeGPT.query.language": "Russian"
+    "CodeGPT.query.language": "English"
 }

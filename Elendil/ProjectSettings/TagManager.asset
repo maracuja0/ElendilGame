@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - EnemyBullet
   - ArcLightning
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - Confiner
   - Enemy
   - Bullet
-  - 
-  - 
+  - TreeMap
+  - CaveMap
   - 
   - 
   - 

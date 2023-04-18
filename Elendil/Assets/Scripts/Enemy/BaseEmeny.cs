@@ -4,25 +4,12 @@ using UnityEngine;
 
 public class BaseEmeny : MonoBehaviour
 {
-    /*
-    Блок переменных, отвечающий за здоровье врага
-    */
     public int maxHealth = 10;
-    protected int currentHealth = 0;
-
-    /*
-    Блок переменных, отвечающиай за зпередвижение врага
-    */
+    public int currentHealth = 0;
     public float moveSpeed = 2f;
-
     public int damage = 1;
 
-    // Сюда надо вставить текстовое поле для вывода HP врага
-    // public Slider healthbar;
-
-    /*
-    /Геттеры
-    */
+    public bool isInvulnerable = false;
     public int GetDamage(){
         return this.damage;
     }
@@ -31,9 +18,6 @@ public class BaseEmeny : MonoBehaviour
         return this.currentHealth;
     }
 
-    /*
-    /Сеттеры
-    */
     public void SetDamage(int damage){
         this.damage = damage;
     }
@@ -53,33 +37,16 @@ public class BaseEmeny : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Collider2D collider = collision;
-        // if (collider.tag == Tag.BULLET)
-        // {
-        //     Bullet bullet = collider.GetComponent<Bullet>();
-        //     if (bullet != null)
-        //     {
-        //         this.TakeDamage(bullet.GetDamage(), collider);
-        //     }
-        // }
-
-        if (collision.tag == Tag.BULLET)
-        {
-            TakeDamage(1);
-        }else if(collision.tag == Tag.ARC_LIGHTNING){
-            TakeDamage(5);
+        if(!isInvulnerable){
+            if (collision.tag == Tag.BULLET)
+            {
+                TakeDamage(collision.GetComponent<Bullet>().GetDamage());
+            }else if(collision.tag == Tag.ARC_LIGHTNING)
+            {
+                TakeDamage(collision.GetComponent<LightningBullet>().GetDamage());
+            }
         }
-
-        //if (collider.tag == Tag.SWORD)
-        // {
-        //     SwordAttack swordAttack = collider.GetComponent<SwordAttack>();
-        //     if (swordAttack.attacking)
-        //     {
-        //         Debug.Log("Attacked" + swordAttack.baseWeapon.damage);
-        //         swordAttack.attacking = false;
-        //         this.GotDamage(swordAttack.baseWeapon.damage, collider);
-        //     }
-        // }
+        
     }
 
     public void TakeDamage(int damage)
@@ -95,8 +62,13 @@ public class BaseEmeny : MonoBehaviour
         }
     }
 
-    // protected virtual void OnAttacked(Collider2D collider) {}
     private void Die() {
         Destroy(gameObject);
+    }
+    public IEnumerator MakeInvulnerable(float invulnerableTime)
+    {
+        isInvulnerable = true;
+        yield return new WaitForSeconds(invulnerableTime);
+        isInvulnerable = false;
     }
 }

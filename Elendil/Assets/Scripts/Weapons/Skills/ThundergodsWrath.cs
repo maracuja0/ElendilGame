@@ -43,6 +43,7 @@ public class ThundergodsWrath : MonoBehaviour
                 if (collider.gameObject.CompareTag(Tag.ENEMY))
                 {
                     collider.gameObject.GetComponent<BaseEmeny>().TakeDamage(damage);
+                    Debug.Log("Ulteded");
                 }
             }
             canShoot = false;
