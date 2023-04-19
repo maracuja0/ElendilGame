@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float damage = 2f;
+    private int damage = 2;
     public float speed = 10f;
     public Rigidbody2D rb;
     
@@ -14,11 +14,11 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.up * speed;
     }
 
-    public void SetDamage(float damage)
+    public void SetDamage(int damage)
     {
         this.damage = damage;
     }
-    public float GetDamage()
+    public int GetDamage()
     {
         return this.damage;
     }

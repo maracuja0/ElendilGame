@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public int damage = 1;
 
     public Death_menu death;
+    public int level;
 
     /*
     /Геттеры
@@ -38,10 +39,8 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // target = enemyes[0];
         direction.x = joystick.Horizontal;
         direction.y = joystick.Vertical;
 
@@ -57,37 +56,15 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private HealthBar healthBar;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Collider2D collider = collision;
-        // if (collider.tag == Tag.BULLET)
-        // {
-        //     Bullet bullet = collider.GetComponent<Bullet>();
-        //     if (bullet != null)
-        //     {
-        //         this.TakeDamage(bullet.GetDamage(), collider);
-        //     }
-        // }
-
-        if (collision.tag == Tag.ENEMY_BULLET)
-        {
-            TakeDamage(1);
-        }
-
-        //if (collider.tag == Tag.SWORD)
-        // {
-        //     SwordAttack swordAttack = collider.GetComponent<SwordAttack>();
-        //     if (swordAttack.attacking)
-        //     {
-        //         Debug.Log("Attacked" + swordAttack.baseWeapon.damage);
-        //         swordAttack.attacking = false;
-        //         this.GotDamage(swordAttack.baseWeapon.damage, collider);
-        //     }
-        // }
-    }
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.tag == Tag.ENEMY_BULLET)
+    //     {
+    //         TakeDamage(collision.gameObject.GetComponent<EnemyBullet>().GetDamage());
+    //     }
+    // }
     protected void TakeDamage(float damage)
     {
-        // this.OnAttacked(collider);
         if (currentHealth >= damage)
         {
             currentHealth -= damage;
@@ -98,18 +75,20 @@ public class PlayerController : MonoBehaviour
         }
         healthBar.UpdateHealthBar(maxHealth, currentHealth);
     }
-
-    // protected virtual void OnAttacked(Collider2D collider) {}
     private void Die() {
         //установить состояние аниматора на смерть
         // gameObject.SetActive(false);
         death.Death();
     }
 
-    
-
     private void move(){
         rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-        
+    }
+
+    public void LoadData(PlayerData saveData){
+        transform.position = new Vector3(saveData.position.x, saveData.position.y, saveData.position.z);
+        this.level = saveData.level;
+        this.currentHealth = saveData.health;
+        this.damage = saveData.damage;
     }
 }
