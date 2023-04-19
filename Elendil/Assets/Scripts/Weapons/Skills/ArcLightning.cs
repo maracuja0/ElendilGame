@@ -9,7 +9,7 @@ public class ArcLightning : MonoBehaviour
     public GameObject lightningPrefab;
     public GameObject nearestEnemy;
     public AutoAim autoAim;
-     private bool canShoot = true;
+    private bool canShoot = true;
     private float shootTime = 0f;
     public float reloadTime = 5f;
 

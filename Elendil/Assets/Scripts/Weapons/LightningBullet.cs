@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightningBullet : MonoBehaviour
 {
-    private float damage = 5f;
+    private int damage = 5;
     public float speed = 2f;
     public int maxBounces = 3;
     private float bounceRange = 15f;
@@ -88,11 +88,11 @@ public class LightningBullet : MonoBehaviour
         return nextTarget;
     }
 
-    public void SetDamage(float damage)
+    public void SetDamage(int damage)
     {
         this.damage = damage;
     }
-    public float GetDamage()
+    public int GetDamage()
     {
         return this.damage;
     }
