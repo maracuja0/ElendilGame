@@ -19,7 +19,6 @@ public class Checkpoint : MonoBehaviour
                 checkpoints.SetCurrentCheckpoint(gameObject);
                 saveManager.SaveGame();
             }
-            
         }    
     }
 }

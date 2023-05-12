@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PlayerData
@@ -9,6 +10,8 @@ public class PlayerData
     public float health;
     public int damage;
     public Vec3 position;
+    public int sceneIndex;
+    public bool is_continue = false;
     
     [System.Serializable]
     public struct Vec3{
@@ -27,6 +30,6 @@ public class PlayerData
         this.health = player.currentHealth;
         this.damage = player.damage;
         this.position = new Vec3(checkpoint);
+        this.sceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
-
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public int damage = 1;
 
     public Death_menu death;
+    public GameObject spawnPoint;
     public int level;
 
     /*
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+        transform.position = spawnPoint.transform.position;
     }
 
     void Update()
@@ -54,18 +57,19 @@ public class PlayerController : MonoBehaviour
         move();
     }
 
-    [SerializeField] private HealthBar healthBar;
+    //[SerializeField] private HealthBar healthBar;
 
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     if (collision.tag == Tag.ENEMY_BULLET)
-    //     {
-    //         TakeDamage(collision.gameObject.GetComponent<EnemyBullet>().GetDamage());
-    //     }
-    // }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == Tag.ENEMY_BULLET)
+        {
+            TakeDamage(collision.gameObject.GetComponent<EnemyBullet>().GetDamage());
+        }
+    }
     protected void TakeDamage(float damage)
     {
-        if (currentHealth >= damage)
+        Debug.Log(damage);
+        if (currentHealth > damage)
         {
             currentHealth -= damage;
         } else
@@ -73,7 +77,7 @@ public class PlayerController : MonoBehaviour
             currentHealth = 0;
             this.Die();
         }
-        healthBar.UpdateHealthBar(maxHealth, currentHealth);
+        //healthBar.UpdateHealthBar(maxHealth, currentHealth);
     }
     private void Die() {
         //установить состояние аниматора на смерть
