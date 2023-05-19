@@ -5,7 +5,7 @@ using UnityEngine;
 public class AutoAim : MonoBehaviour
 {
     public Transform firePoint;
-    public float range = 10f;
+    public float range = 20f;
     public GameObject nearestEnemy;
     
     void Update()
@@ -30,7 +30,7 @@ public class AutoAim : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distance = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distance < nearestEnemyDistance)
+            if (distance < nearestEnemyDistance && distance <= range)
             {
                 nearestEnemy = enemy;
                 nearestEnemyDistance = distance;

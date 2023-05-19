@@ -13,6 +13,7 @@ public class LightningBullet : MonoBehaviour
     public GameObject target;
     public Vector3 direction;
     public Vector2 rotation;
+    public Animator anim;
     public Rigidbody2D rb;
     private List<GameObject> hitTargets = new List<GameObject>();
     
@@ -39,7 +40,7 @@ public class LightningBullet : MonoBehaviour
         }
         
     }
-
+    
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(Tag.ENEMY))

@@ -6,7 +6,16 @@ public class Checkpoint : MonoBehaviour
 {
     public Checkpoints checkpoints;
     public bool cheacked = false;
-    public SaveManager saveManager;
+    private SaveManager saveManager;
+    private PlayerController player;
+    private const string key = "mainSave";
+
+    public void Awake()
+    {
+        saveManager = FindObjectOfType<SaveManager>(); // Найти объект SaveManager в сцене
+        player = FindObjectOfType<PlayerController>();
+    }
+
     public Vector3 GetCheckpointPosition(){
         return transform.position;
     }
@@ -16,8 +25,7 @@ public class Checkpoint : MonoBehaviour
         if(collision.tag == Tag.PLAYER){
             if(!cheacked){
                 cheacked = true;
-                checkpoints.SetCurrentCheckpoint(gameObject);
-                saveManager.SaveGame();
+                saveManager.SaveGame(key, new PlayerData(player, gameObject));
             }
         }    
     }

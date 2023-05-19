@@ -5,59 +5,32 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.Android;
 
-//Нужно сохранять здоровье врага, урон его скиллов
-//Сохранение делать по позиции триггера на сохранение(то есть он должен появиться ровно на месте триггера)
-
 public class SaveManager : MonoBehaviour
 {
-    private PlayerData saveData;
-    public PlayerController player;
-    public Checkpoints checkpoint;
-    public GameObject spawnPoint;
-    private string saveFilePath;
     public GameObject savedGameText;
+    private PlayerController player;
+    private const string key = "mainSave";
 
-    private void RequestStoragePermissions()
+    public void Awake()
     {
-        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
-        {
-            Permission.RequestUserPermission(Permission.ExternalStorageRead);
-        }
-
-        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
-        {
-            Permission.RequestUserPermission(Permission.ExternalStorageWrite);
-        }
+        player = FindObjectOfType<PlayerController>();
     }
 
-    void Start()
+    public void LoadGame(string key)
     {
-        RequestStoragePermissions();
-        saveFilePath = Path.Combine(Application.persistentDataPath, "savefile.dat");
-        if (File.Exists(saveFilePath))
-        {
-            LoadGame();
-        }
-    }
-    public void LoadGame()
-    {
-        if (File.Exists(saveFilePath))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = new FileStream(saveFilePath, FileMode.Open);
-            saveData = (PlayerData)bf.Deserialize(file);
+        PlayerData saveData;
+        if(PlayerPrefs.HasKey(key)){
+            string loadedString = PlayerPrefs.GetString(key);
+            saveData = JsonUtility.FromJson<PlayerData>(loadedString);
             player.LoadData(saveData);
-            file.Close();
         }
+
     }
-    public void SaveGame()
+    public void SaveGame(string key, PlayerData saveData)
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = new FileStream(saveFilePath, FileMode.Create);
-        saveData = new PlayerData(player, checkpoint);
-        bf.Serialize(file, saveData);
-        Debug.Log("Game Saved!");
-        file.Close();
+        string jsonDataString = JsonUtility.ToJson(saveData, true);
+        PlayerPrefs.SetString(key, jsonDataString);
+        PlayerPrefs.Save();
         StartCoroutine(savedGameTextShow());
     }
 

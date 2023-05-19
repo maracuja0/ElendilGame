@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private int damage = 2;
+    private int damage;
     public float speed = 10f;
     public Rigidbody2D rb;
+    public PlayerController player;
     
     void Start()
     {
+        player = FindObjectOfType<PlayerController>();
+        damage = player.damage;
         rb.velocity = transform.up * speed;
     }
 

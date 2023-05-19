@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private int damage = 2;
+    public int damage = 2;
     public float speed = 10f;
     public Rigidbody2D rb;
     
@@ -22,7 +21,7 @@ public class EnemyBullet : MonoBehaviour
     {
         this.speed = speed;
     }
-    public float GetDamage()
+    public int GetDamage()
     {
         return this.damage;
     }

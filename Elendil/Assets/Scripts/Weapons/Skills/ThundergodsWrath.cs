@@ -11,6 +11,7 @@ public class ThundergodsWrath : MonoBehaviour
     private bool canShoot = true;
     private float shootTime = 0f;
     public float reloadTime = 10f;
+    public Animator anim;
 
     void Start()
     {
@@ -34,21 +35,27 @@ public class ThundergodsWrath : MonoBehaviour
         }
     }
 
-    public void ThundergodsWrathSkill(){
-        if (canShoot)
+    IEnumerator Shooting(){
+        anim.SetBool("IsAttack", true);
+        yield return new WaitForSeconds(0.4f);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+        foreach (Collider2D collider in colliders)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
-            foreach (Collider2D collider in colliders)
+            if (collider.gameObject.CompareTag(Tag.ENEMY))
             {
-                if (collider.gameObject.CompareTag(Tag.ENEMY))
-                {
-                    collider.gameObject.GetComponent<BaseEmeny>().TakeDamage(damage);
-                    Debug.Log("Ulteded");
-                }
+                collider.gameObject.GetComponent<BaseEmeny>().TakeDamage(damage);
+                Debug.Log("Ulteded");
             }
-            canShoot = false;
-            thundergodsWrathButton.interactable = false;
         }
-        
+        thundergodsWrathButton.interactable = false;
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("IsAttack", false);
+    }
+
+    public void ThundergodsWrathSkill(){
+        if (canShoot){
+            canShoot = false;
+            StartCoroutine(Shooting());
+        }    
     }
 }

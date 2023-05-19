@@ -13,6 +13,12 @@ public class MenuManager : MonoBehaviour
     public GameObject player;
     public string saveFilePath;
     public bool is_continue = true;
+    private const string key = "mainSave";
+    public GameObject continueButton;
+
+    public Slider slider;
+    public GameObject loadingScreen;
+
     private void RequestStoragePermissions()
     {
         if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
@@ -29,33 +35,38 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         RequestStoragePermissions();
-        saveFilePath = Path.Combine(Application.persistentDataPath, "savefile.dat");
+        if(PlayerPrefs.HasKey(key)){
+            continueButton.SetActive(true);
+        }
     }
 
     public void LoadGame(){
-        if (File.Exists(saveFilePath))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = new FileStream(saveFilePath, FileMode.Open);
-            saveData = (PlayerData)bf.Deserialize(file);
-            file.Close();
-            SceneManager.LoadScene(saveData.sceneIndex);
+        if(PlayerPrefs.HasKey(key)){
+            PlayerData saveData;
+            string loadedString = PlayerPrefs.GetString(key);
+            saveData = JsonUtility.FromJson<PlayerData>(loadedString);
+            StartCoroutine(LoadingScreenOnFade(saveData.sceneIndex));
         }
-        
     }
 
     public void NewGame(){
-        if (File.Exists(saveFilePath))
-        {
-            File.Delete(saveFilePath);
-            Debug.Log("File deleted successfully.");
-        }else{
-            Debug.LogWarning("File not found.");
+        if(PlayerPrefs.HasKey(key)){
+            PlayerPrefs.DeleteAll();
         }
-        SceneManager.LoadScene(1);
+        StartCoroutine(LoadingScreenOnFade(1));
     }
 
     public void QuiteGame(){
         Application.Quit();
+    }
+
+    IEnumerator LoadingScreenOnFade(int index){
+        AsyncOperation operation = SceneManager.LoadSceneAsync(index);
+        loadingScreen.SetActive(true);
+        while(!operation.isDone){
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            slider.value = progress;
+            yield return null;
+        }
     }
 }

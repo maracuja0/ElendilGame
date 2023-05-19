@@ -13,6 +13,9 @@ public class Pause_menu : MonoBehaviour
 
     public Button pauseButton;
 
+    public Slider slider;
+    public GameObject loadingScreen;
+
     private void Start()
     {
         restartButton.onClick.AddListener(RestartGame);
@@ -21,17 +24,6 @@ public class Pause_menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Escape))
-        // {
-        //     if (GameIsPaused)
-        //     {
-        //         Resume();
-        //     }
-        //     else
-        //     {
-        //         Pause();
-        //     }
-        // }
         if(GameIsPaused){
             pauseButton.onClick.AddListener(Resume);
         }else{
@@ -56,13 +48,23 @@ public class Pause_menu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("menu");
+        StartCoroutine(LoadingScreenOnFade(0));
     }
 
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadingScreenOnFade(SceneManager.GetActiveScene().buildIndex));
         GameIsPaused = false;
+    }
+
+    IEnumerator LoadingScreenOnFade(int index){
+        AsyncOperation operation = SceneManager.LoadSceneAsync(index);
+        loadingScreen.SetActive(true);
+        while(!operation.isDone){
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            slider.value = progress;
+            yield return null;
+        }
     }
 }

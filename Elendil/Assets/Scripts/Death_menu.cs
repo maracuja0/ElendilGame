@@ -11,17 +11,15 @@ public class Death_menu : MonoBehaviour
     public Button restartButton;
     public Button menuButton;
     
+    public Slider slider;
+    public GameObject loadingScreen;
 
     void Start()
     {
         restartButton.onClick.AddListener(RestartGame);
         menuButton.onClick.AddListener(LoadMenu);
     }
-
-    void Update()
-    {
-        
-    }
+    
     public void Death(){
         deathMenuUI.SetActive(true);
         GameIsPaused = true;
@@ -30,12 +28,21 @@ public class Death_menu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("menu");
+        StartCoroutine(LoadingScreenOnFade(0));
     }
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadingScreenOnFade(SceneManager.GetActiveScene().buildIndex));
         GameIsPaused = false;
+    }
+    IEnumerator LoadingScreenOnFade(int index){
+        AsyncOperation operation = SceneManager.LoadSceneAsync(index);
+        loadingScreen.SetActive(true);
+        while(!operation.isDone){
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            slider.value = progress;
+            yield return null;
+        }
     }
 }
