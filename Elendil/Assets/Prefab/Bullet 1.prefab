@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8575864350878785303}
   - component: {fileID: 9123923098718132093}
   - component: {fileID: 6466599775639405040}
+  - component: {fileID: 5410942997498404549}
   m_Layer: 8
   m_Name: Bullet 1
   m_TagString: ArcLightning
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: edf4d0d832b744d42b9692bf1fabcc89, type: 3}
-  m_Color: {r: 0, g: 0.45908234, b: 0.8584906, a: 1}
+  m_Sprite: {fileID: -1195099407, guid: e3fc14707b6892d4c826e4ccf24170f6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -123,7 +124,7 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.01457119, y: -0.03124404}
   m_SpriteTilingProperty:
-    border: {x: 0.375, y: 0.3125, z: 0.40625, w: 0.375}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
@@ -147,10 +148,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  maxBounces: 3
+  maxBounces: 5
   currentBounces: 0
   nextTarget: {fileID: 0}
   target: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0}
+  anim: {fileID: 5410942997498404549}
   rb: {fileID: 0}
+--- !u!95 &5410942997498404549
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8703207232456304927}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cc04b5540cebd564fb9b21f1080e02b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

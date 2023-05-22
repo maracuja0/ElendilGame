@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &716084908
 Transform:
   m_ObjectHideFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716084907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0.41, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81,7 +81,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 11831
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 1910952841080302657}
   - component: {fileID: 5288729761871309241}
   - component: {fileID: 3750400378660986802}
+  - component: {fileID: 1663466870585199375}
   - component: {fileID: 7016235009656578159}
   - component: {fileID: 3511806560756060566}
   - component: {fileID: 4731715028915053262}
@@ -173,7 +174,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -1884326503, guid: 1b7a2c25597c05545a6f2409a04376ff, type: 3}
+  m_Sprite: {fileID: 391365093, guid: 1b7a2c25597c05545a6f2409a04376ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,7 +184,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &3750400378660986802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,8 +200,43 @@ MonoBehaviour:
   moveSpeed: 3
   anim: {fileID: 4731715028915053262}
   joystick: {fileID: 0}
-  maxHealth: 10
-  damage: 1
+  maxHealth: 100
+  currentHealth: 0
+  damage: 10
+  death: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  level: 0
+  buttonsController: {fileID: 0}
+  canRun: 1
+  canAttack: 0
+  canArcLightning: 0
+  canThunder: 0
+--- !u!61 &1663466870585199375
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867776424683627795}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00025749207, y: 0.4679699}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.25568008, y: 0.9359398}
+  m_EdgeRadius: 0
 --- !u!50 &7016235009656578159
 Rigidbody2D:
   serializedVersion: 4
@@ -235,9 +271,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0012154281, y: -0.25143406}
+  m_Offset: {x: 0.0012154579, y: 0.24761464}
   serializedVersion: 2
-  m_Radius: 0.24958375
+  m_Radius: 0.18968205
 --- !u!95 &4731715028915053262
 Animator:
   serializedVersion: 5
@@ -258,6 +294,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4984609982530008591
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4984609984164898442}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.016, y: -0.161, z: 0}
+  m_LocalPosition: {x: -0.189, y: 0.701, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -333,7 +370,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4984609984164898442}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -409,6 +446,9 @@ MonoBehaviour:
   shootButton: {fileID: 0}
   bulletPrefab: {fileID: 8703207232456304927, guid: 64715acf712d0254a9d987ac74c19192, type: 3}
   autoAim: {fileID: 7030409452034765261}
+  anim: {fileID: 4731715028915053262}
+  is_shooting: 0
+  range: 20
 --- !u!114 &1257456301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +465,9 @@ MonoBehaviour:
   lightningPrefab: {fileID: 8703207232456304927, guid: 3aa2a6a4a5a882b4b920ffac80732a97, type: 3}
   nearestEnemy: {fileID: 0}
   autoAim: {fileID: 7030409452034765261}
+  anim: {fileID: 4731715028915053262}
+  reloadTime: 5
+  range: 10
 --- !u!114 &7603197889308222619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199e9f0ff34ce834dbc5e6902a5a4784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arcLightningButton: {fileID: 0}
+  thundergodsWrathButton: {fileID: 0}
   radius: 10
   damage: 10
+  reloadTime: 10
+  anim: {fileID: 4731715028915053262}

@@ -7,6 +7,7 @@ public class EzzzhikBoss : BaseEmeny
 {
     public float attackDelay = 1f;
     public float needleAttackDelay = 3f;
+    public float circleAttackDelay = 5f;
     public float attackTimer = 0f; 
     public Transform target; 
     private Animator anim;
@@ -14,6 +15,8 @@ public class EzzzhikBoss : BaseEmeny
     public GameObject gun;
     public Transform spawnPoint;
     public GameObject NeedlePrefab;
+    public bool CircleAttackIsStarted = false;
+    public DialogManager dialog3;
    new void Start()
     {
         base.Start();
@@ -21,6 +24,7 @@ public class EzzzhikBoss : BaseEmeny
         base.maxHealth = 250;
         base.currentHealth = maxHealth;
         base.moveSpeed = 10;
+        base.spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -29,7 +33,8 @@ public class EzzzhikBoss : BaseEmeny
     new void Update()
     {
         base.Update();
-        if(currentHealth >= 175){
+        if(dialog3.DialogEnd){
+            if(currentHealth >= 175){
             Vector2 direction = (target.position - transform.position).normalized;
     
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
@@ -48,26 +53,34 @@ public class EzzzhikBoss : BaseEmeny
                 attackTimer = 0f;
             }
         }else if(currentHealth < 75){
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= needleAttackDelay) {
+            if (!CircleAttackIsStarted) {
                 StartCoroutine(CircleAttackCoroutine());
                 attackTimer = 0f;
             }
         }
+        }
     }
-
-    private void Attack(){
+    IEnumerator SupperAttackCoroutine(){
         EnemyBullet needleSkript = NeedlePrefab.GetComponent<EnemyBullet>();
-        needleSkript.SetDamage(damage);
-        needleSkript.SetSpeed(15);
-        GameObject bullet = Instantiate(NeedlePrefab, spawnPoint.position, spawnPoint.rotation);
+        needleSkript.SetSpeed(20);
+        needleSkript.damage = 15;
+        for(int i = 0; i < 5; ++i){
+            Vector2 direction = (target.position - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+            gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            GameObject bullet = Instantiate(NeedlePrefab, spawnPoint.position, spawnPoint.rotation);
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("NeedleAttack", false);
     }
     IEnumerator AttackCoroutine(){
         anim.SetBool("NeedleAttack", true);
         yield return new WaitForSeconds(1f);
         EnemyBullet needleSkript = NeedlePrefab.GetComponent<EnemyBullet>();
-        needleSkript.SetDamage(damage);
         needleSkript.SetSpeed(15);
+        needleSkript.damage = 10;
         GameObject bullet = Instantiate(NeedlePrefab, spawnPoint.position, spawnPoint.rotation);
         yield return new WaitForSeconds(1f);
         anim.SetBool("NeedleAttack", false);
@@ -76,12 +89,13 @@ public class EzzzhikBoss : BaseEmeny
    IEnumerator NeedleAttackCoroutine(){
         anim.SetBool("NeedleAttack", true);
         yield return new WaitForSeconds(1f);
-        float angle = 0;
-        gun.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        Vector2 direction = (target.position - transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        EnemyBullet needleSkript = NeedlePrefab.GetComponent<EnemyBullet>();
+        needleSkript.SetSpeed(10);
+        needleSkript.damage = 15;
         for(int i = 0; i < 24; ++i){
-            EnemyBullet needleSkript = NeedlePrefab.GetComponent<EnemyBullet>();
-            needleSkript.SetDamage(15);
-            needleSkript.SetSpeed(5);
             gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             GameObject needle = Instantiate(NeedlePrefab, spawnPoint.position, spawnPoint.rotation);
             angle += 15f;
@@ -90,19 +104,18 @@ public class EzzzhikBoss : BaseEmeny
         anim.SetBool("NeedleAttack", false);
    }
    IEnumerator CircleAttackCoroutine(){
+        CircleAttackIsStarted = true;
         anim.SetBool("ToCircle", true);
         yield return new WaitForSeconds(1f);
-        base.MakeInvulnerable(5f);
-        Transform currenPos = gameObject.transform;
-        yield return new WaitForSeconds(1f);
+        StartCoroutine(base.MakeInvulnerable(5f));
+        yield return new WaitForSeconds(5f);
         anim.SetBool("ToCircle", false);
-        yield return new WaitForSeconds(1f);
+        StartCoroutine(SupperAttackCoroutine());
+        yield return new WaitForSeconds(3f);
         anim.SetBool("FromCircle", true);
-        // anim.SetBool("Circle", true);
-        // Transform targetPos = target.transform;
-        // Vector2 direction = (targetPos.position - gameObject.transform.position).normalized;
-        // while(gameObject.transform.position != targetPos.position){
-        //     rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-        // }
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("FromCircle", false);
+        CircleAttackIsStarted = false;
    }
+
 }

@@ -9,6 +9,20 @@ public class BaseEmeny : MonoBehaviour
     public float moveSpeed = 2f;
     public int damage = 1;
 
+    public SpriteRenderer spriteRenderer; // Ссылка на компонент SpriteRenderer врага
+    public Color damageColor; // Цвет окрашивания при получении урона
+    public float damageEffectDuration = 0.2f; // Длительность эффекта окрашивания при получении урона
+
+    private Color originalColor = Color.white; // Исходный цвет спрайта врага
+
+    public bool haveAdditionalObjects;
+    public GameObject additionalObject;
+    
+    public bool haveDialog = false;
+    public GameObject rune;
+
+    public DialogManager dialog4;
+
     public bool isInvulnerable = false;
     public int GetDamage(){
         return this.damage;
@@ -25,7 +39,20 @@ public class BaseEmeny : MonoBehaviour
     protected void Start()
     {
         currentHealth = maxHealth;
+        damageColor = HexToColor("#FFCECE");
         // healthbar.maxValue = maxHealth;
+    }
+
+    private Color HexToColor(string hex)
+    {
+        Color color = Color.red; // Цвет по умолчанию, если процесс преобразования не удался
+
+        if (ColorUtility.TryParseHtmlString(hex, out Color parsedColor))
+        {
+            color = parsedColor;
+        }
+
+        return color;
     }
 
      // Update is called once per frame
@@ -54,6 +81,9 @@ public class BaseEmeny : MonoBehaviour
         // this.OnAttacked(collider);
         if (currentHealth > damage)
         {
+            spriteRenderer.color = damageColor;
+
+            StartCoroutine(RestoreColorAfterDelay(damageEffectDuration));
             currentHealth -= damage;
         } else
         {
@@ -64,7 +94,22 @@ public class BaseEmeny : MonoBehaviour
 
     private void Die() {
         Destroy(gameObject);
+        if(haveAdditionalObjects){
+            additionalObject.SetActive(true);
+            rune.SetActive(true);
+        }
+        if(haveDialog){
+            dialog4.startDialog();
+        }
     }
+    private IEnumerator RestoreColorAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Восстанавливаем исходный цвет спрайта
+        spriteRenderer.color = originalColor;
+    }
+
     public IEnumerator MakeInvulnerable(float invulnerableTime)
     {
         isInvulnerable = true;

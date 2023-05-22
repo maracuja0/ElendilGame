@@ -9,12 +9,15 @@ public class ArcLightning : MonoBehaviour
     public GameObject lightningPrefab;
     public GameObject nearestEnemy;
     public AutoAim autoAim;
+    public Animator anim;
     private bool canShoot = true;
     private float shootTime = 0f;
     public float reloadTime = 5f;
+    public float range = 10f;
 
     void Start()
     {
+        autoAim.range = range;
         arcLightningButton.onClick.AddListener(ArcLightningSkill);
     }
     void Update()
@@ -42,19 +45,25 @@ public class ArcLightning : MonoBehaviour
         }
     }
 
+    IEnumerator Shooting(){
+        anim.SetBool("IsAttack", true);
+        yield return new WaitForSeconds(0.4f);
+        LightningBullet lightningScript = lightningPrefab.GetComponent<LightningBullet>();
+        lightningScript.SetTarget(nearestEnemy);
+
+        if(nearestEnemy != null){
+            GameObject lightning = Instantiate(lightningPrefab, autoAim.firePoint.position, autoAim.firePoint.rotation);
+        }
+        arcLightningButton.interactable = false;
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("IsAttack", false);
+    }
+
     public void ArcLightningSkill()
     {
-        if (canShoot)
-        {
-            LightningBullet lightningScript = lightningPrefab.GetComponent<LightningBullet>();
-            lightningScript.SetTarget(nearestEnemy);
-
-            if(nearestEnemy != null){
-                GameObject lightning = Instantiate(lightningPrefab, autoAim.firePoint.position, autoAim.firePoint.rotation);
-            }
+        if (canShoot && nearestEnemy != null){
             canShoot = false;
-            arcLightningButton.interactable = false;
-        }
-        
+            StartCoroutine(Shooting());
+        }   
     }
 }

@@ -3,44 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-
-//Нужно сохранять здоровье врага, урон его скиллов
-//Сохранение делать по позиции триггера на сохранение(то есть он должен появиться ровно на месте триггера)
+using UnityEngine.Android;
 
 public class SaveManager : MonoBehaviour
 {
-    private PlayerData saveData;
-    public PlayerController player;
-    public Checkpoints checkpoint;
-    private string saveFilePath;
+    public GameObject savedGameText;
+    private PlayerController player;
+    private const string key = "mainSave";
 
-    void Start()
+    public void Awake()
     {
-        saveFilePath = Application.persistentDataPath + "/savedata.dat";
+        player = FindObjectOfType<PlayerController>();
     }
 
-    public void LoadGame()
+    public void LoadGame(string key)
     {
-        if (File.Exists(saveFilePath))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = new FileStream(saveFilePath, FileMode.Open);
-
-            saveData = (PlayerData)bf.Deserialize(file);
+        PlayerData saveData;
+        if(PlayerPrefs.HasKey(key)){
+            string loadedString = PlayerPrefs.GetString(key);
+            saveData = JsonUtility.FromJson<PlayerData>(loadedString);
             player.LoadData(saveData);
-            file.Close();
         }
+
     }
-    public void SaveGame()
+    public void SaveGame(string key, PlayerData saveData)
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = new FileStream(saveFilePath, FileMode.Create);
-        saveData = new PlayerData(player, checkpoint);
-        bf.Serialize(file, saveData);
-        Debug.Log("Game Saved!");
-
-        file.Close();
+        string jsonDataString = JsonUtility.ToJson(saveData, true);
+        PlayerPrefs.SetString(key, jsonDataString);
+        PlayerPrefs.Save();
+        StartCoroutine(savedGameTextShow());
     }
 
+     IEnumerator savedGameTextShow(){
+        savedGameText.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        savedGameText.SetActive(false);
+    }
 }
 
