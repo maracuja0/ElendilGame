@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         if(PlayerPrefs.HasKey(key)){
             saveManager.LoadGame(key);
+            if(transform.position == new Vector3(0f, 0f, 0f)){
+                transform.position = spawnPoint.transform.position;
+            }
             if(canAttack){
                 buttonsController.setActiveAttack();
             }

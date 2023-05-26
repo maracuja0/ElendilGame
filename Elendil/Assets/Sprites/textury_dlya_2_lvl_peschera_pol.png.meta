@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5aab86217ed55e44d92b316e73c9b918
+guid: 96a904e5f08fa734f8d014ebfd010f15
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,70 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: steny_bossa_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 61b4fff2f599c3341b620f986ccf14f7
-      internalID: -715473270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: steny_bossa_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 914777a6c77ca824d969b8e982d8330d
-      internalID: -275572176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: steny_bossa_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b852e2399eda664484e2963f6e753b3
-      internalID: -68499300
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: steny_bossa_3
+      name: textury_dlya_2_lvl_peschera_pol_0
       rect:
         serializedVersion: 2
         x: 0
@@ -194,14 +131,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f97c408507fe7b8469e69cd34481664a
-      internalID: -804622183
+      spriteID: f786107b286c8bf4589b6e1b1f030554
+      internalID: 727381417
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: steny_bossa_4
+      name: textury_dlya_2_lvl_peschera_pol_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 196d0915872c7814da2a0892a6c532ff
+      internalID: -1188391242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: textury_dlya_2_lvl_peschera_pol_2
       rect:
         serializedVersion: 2
         x: 64
@@ -215,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8695d8f1749a9074197f352841e7934c
-      internalID: -777588546
+      spriteID: 7cdc811d9cdce4a48a65b905f6f304eb
+      internalID: 1809969653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: steny_bossa_5
+      name: textury_dlya_2_lvl_peschera_pol_3
       rect:
         serializedVersion: 2
         x: 0
@@ -236,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5cec419bd529b9448cfa9b511d098e3
-      internalID: 1723227986
+      spriteID: d9e2097e47927fc49967d65a4af94946
+      internalID: -783796908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: steny_bossa_6
+      name: textury_dlya_2_lvl_peschera_pol_4
       rect:
         serializedVersion: 2
         x: 32
@@ -257,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f1a8d9ca1c1ea84e97eab0b64ddf28c
-      internalID: -1110721314
+      spriteID: 2c194548365a27742823b671c3312c2f
+      internalID: -101241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: steny_bossa_7
+      name: textury_dlya_2_lvl_peschera_pol_5
       rect:
         serializedVersion: 2
         x: 64
@@ -278,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f85e67431d37d142b12cf84b349f2e0
-      internalID: 436574114
+      spriteID: fb532a055943f1d449b17b924fd87a5d
+      internalID: -1589285562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: steny_bossa_8
+      name: textury_dlya_2_lvl_peschera_pol_6
       rect:
         serializedVersion: 2
         x: 0
@@ -299,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0da82beff2157de4bb85df37ce3233fa
-      internalID: -987456508
+      spriteID: 2e1d246bf88c56f43b2c16afe9cb2cb0
+      internalID: -100119868
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: steny_bossa_9
+      name: textury_dlya_2_lvl_peschera_pol_7
       rect:
         serializedVersion: 2
         x: 32
@@ -320,8 +278,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b02d6a80567611e4480faf06a3f4c571
-      internalID: -1292350572
+      spriteID: a35f117b10085a748bb2c759bdd2155b
+      internalID: 1992467704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: textury_dlya_2_lvl_peschera_pol_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0518e6673be10c64fb1588a71598fbdd
+      internalID: -337432247
       vertices: []
       indices: 
       edges: []
@@ -337,16 +316,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      steny_bossa_0: -715473270
-      steny_bossa_1: -275572176
-      steny_bossa_2: -68499300
-      steny_bossa_3: -804622183
-      steny_bossa_4: -777588546
-      steny_bossa_5: 1723227986
-      steny_bossa_6: -1110721314
-      steny_bossa_7: 436574114
-      steny_bossa_8: -987456508
-      steny_bossa_9: -1292350572
+      textury_dlya_2_lvl_peschera_pol_0: 727381417
+      textury_dlya_2_lvl_peschera_pol_1: -1188391242
+      textury_dlya_2_lvl_peschera_pol_2: 1809969653
+      textury_dlya_2_lvl_peschera_pol_3: -783796908
+      textury_dlya_2_lvl_peschera_pol_4: -101241
+      textury_dlya_2_lvl_peschera_pol_5: -1589285562
+      textury_dlya_2_lvl_peschera_pol_6: -100119868
+      textury_dlya_2_lvl_peschera_pol_7: 1992467704
+      textury_dlya_2_lvl_peschera_pol_8: -337432247
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

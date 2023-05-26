@@ -22,7 +22,7 @@ public class PlayerData
         public Vec3(GameObject checkpoint){
             this.x = checkpoint.transform.position.x;
             this.y = checkpoint.transform.position.y;
-            this.z = checkpoint.transform.position.z;
+            this.z = 0;
         }
     }
 

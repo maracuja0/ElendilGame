@@ -9,11 +9,23 @@ public class SceneLoader : MonoBehaviour
     public GameObject loadingScreen;
     public Slider slider;
     public bool is_cheaked = false;
+    private SaveManager saveManager;
+    private PlayerController player;
+    public GameObject spawnPoint;
+    private const string key = "mainSave";
+
+
+    void Start()
+    {
+        saveManager = FindObjectOfType<SaveManager>(); // Найти объект SaveManager в сцене
+        player = FindObjectOfType<PlayerController>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if(!is_cheaked && other.tag == Tag.PLAYER){
             StartCoroutine(LoadingScreenOnFade(SceneManager.GetActiveScene().buildIndex + 1));
+            saveManager.SaveGame(key, new PlayerData(player, spawnPoint));
         }
     }
 
