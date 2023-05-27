@@ -33,6 +33,8 @@ public class Dialogue : MonoBehaviour
     public int index = 0;
     public float speedText;
     private bool isStarted = false;
+    public GameObject loadingScreen;
+    public Slider slider;
 
     public void Start ()
     {
@@ -60,8 +62,9 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
-            DialoguePrefab.SetActive(false);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //DialoguePrefab.SetActive(false);
+            StartCoroutine(LoadingScreenOnFade(SceneManager.GetActiveScene().buildIndex + 1));
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
@@ -80,13 +83,23 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        
         image.sprite = DialogueContainer.phrases[index].charImage;
 
         foreach (char c in DialogueContainer.phrases[index].charText)
         {
             DialogueText.text += c;
             yield return new WaitForSeconds(speedText);
+        }
+    }
+
+    IEnumerator LoadingScreenOnFade(int index){
+        yield return new WaitForSeconds(1f);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(index);
+        loadingScreen.SetActive(true);
+        while(!operation.isDone){
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            slider.value = progress;
+            yield return null;
         }
     }
 }
