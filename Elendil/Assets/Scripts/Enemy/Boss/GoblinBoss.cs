@@ -5,8 +5,7 @@ using UnityEngine;
 public class GoblinBoss : BaseEmeny
 {
    public float attackDelay = 1f;
-    public float needleAttackDelay = 3f;
-    public float circleAttackDelay = 5f;
+    public float PrizyvDelay = 3f;
     public float attackTimer = 0f; 
     public Transform target; 
     private Animator anim;
@@ -16,11 +15,19 @@ public class GoblinBoss : BaseEmeny
     public GameObject NeedlePrefab;
     public bool CircleAttackIsStarted = false;
     public DialogManager dialog3;
+    public bool Spawn1Started = false;
+    public bool Spawn2Started = false;
+
+    public GameObject mobPrefab;  // Префаб моба, который вы хотите спавнить
+    public BoxCollider2D spawnArea; // Ссылка на компонент Box Collider 2D
+    private int spawnedCount;        // Количество спаунов в текущей волне
+
+    public List<GameObject> Enemyes;
    new void Start()
     {
         base.Start();
         base.damage = 10;
-        base.maxHealth = 250;
+        base.maxHealth = 450;
         base.currentHealth = maxHealth;
         base.moveSpeed = 10;
         base.spriteRenderer = GetComponent<SpriteRenderer>();
@@ -33,87 +40,85 @@ public class GoblinBoss : BaseEmeny
     {
         base.Update();
         if(dialog3.DialogEnd){
-            if(currentHealth >= 175){
             Vector2 direction = (target.position - transform.position).normalized;
-    
+
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
             attackTimer += Time.deltaTime;
-            if (attackTimer >= attackDelay) {
-                // Attack();
-                StartCoroutine(AttackCoroutine()); 
-                attackTimer = 0f;
+            if(currentHealth >= 225){
+                if (attackTimer >= attackDelay) {
+                    StartCoroutine(AttackCoroutine()); 
+                    attackTimer = 0f;
+                }
+            }else if(currentHealth >= 75 && currentHealth < 225){
+                if(!Spawn1Started){
+                    StartCoroutine(Priziv1Coroutine());
+                }
+                if (attackTimer >= attackDelay) {;
+                    StartCoroutine(AttackCoroutine()); 
+                    attackTimer = 0f;
+                }
+            }else{
+                if(!Spawn2Started){
+                    StartCoroutine(Priziv2Coroutine());
+                }
+                if (attackTimer >= attackDelay) {
+                    StartCoroutine(AttackCoroutine()); 
+                    attackTimer = 0f;
+                }
             }
-        }else if(currentHealth >= 75 && currentHealth < 175){
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= needleAttackDelay) {
-                StartCoroutine(NeedleAttackCoroutine());   
-                attackTimer = 0f;
-            }
-        }else if(currentHealth < 75){
-            if (!CircleAttackIsStarted) {
-                StartCoroutine(CircleAttackCoroutine());
-                attackTimer = 0f;
-            }
-        }
         }
     }
-    IEnumerator SupperAttackCoroutine(){
+    IEnumerator AttackCoroutine(){
+        anim.SetBool("ToAttack", true);
+        yield return new WaitForSeconds(1f);
         EnemyBullet needleSkript = NeedlePrefab.GetComponent<EnemyBullet>();
         needleSkript.SetSpeed(20);
         needleSkript.damage = 15;
-        for(int i = 0; i < 5; ++i){
-            Vector2 direction = (target.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-            GameObject bullet = Instantiate(NeedlePrefab, spawnPoint.position, spawnPoint.rotation);
-            yield return new WaitForSeconds(0.2f);
-        }
-
-        yield return new WaitForSeconds(1f);
-        anim.SetBool("NeedleAttack", false);
-    }
-    IEnumerator AttackCoroutine(){
-        anim.SetBool("NeedleAttack", true);
-        yield return new WaitForSeconds(1f);
-        EnemyBullet needleSkript = NeedlePrefab.GetComponent<EnemyBullet>();
-        needleSkript.SetSpeed(15);
-        needleSkript.damage = 10;
         GameObject bullet = Instantiate(NeedlePrefab, spawnPoint.position, spawnPoint.rotation);
         yield return new WaitForSeconds(1f);
-        anim.SetBool("NeedleAttack", false);
+        anim.SetBool("ToAttack", false);
     }
 
-   IEnumerator NeedleAttackCoroutine(){
-        anim.SetBool("NeedleAttack", true);
+    IEnumerator Priziv1Coroutine(){
+        anim.SetBool("ToPriziv", true);
+        Spawn1Started = true;
         yield return new WaitForSeconds(1f);
-        Vector2 direction = (target.position - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-        EnemyBullet needleSkript = NeedlePrefab.GetComponent<EnemyBullet>();
-        needleSkript.SetSpeed(10);
-        needleSkript.damage = 15;
-        for(int i = 0; i < 24; ++i){
-            gun.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-            GameObject needle = Instantiate(NeedlePrefab, spawnPoint.position, spawnPoint.rotation);
-            angle += 15f;
+
+        for(int i = 0; i < 2; ++i){
+            Vector2 spawnPoint = GetRandomSpawnPoint();
+            GameObject mob = Instantiate(mobPrefab, spawnPoint, Quaternion.identity);
+            spawnedCount++;
+            Enemyes.Add(mob);
+            yield return new WaitForSeconds(1f);
         }
         yield return new WaitForSeconds(1f);
-        anim.SetBool("NeedleAttack", false);
-   }
-   IEnumerator CircleAttackCoroutine(){
-        CircleAttackIsStarted = true;
-        anim.SetBool("ToCircle", true);
+        anim.SetBool("ToPriziv", false);
+    }
+
+    IEnumerator Priziv2Coroutine(){
+        anim.SetBool("ToPriziv", true);
+        Spawn2Started = true;
         yield return new WaitForSeconds(1f);
-        StartCoroutine(base.MakeInvulnerable(5f));
-        yield return new WaitForSeconds(5f);
-        anim.SetBool("ToCircle", false);
-        StartCoroutine(SupperAttackCoroutine());
-        yield return new WaitForSeconds(3f);
-        anim.SetBool("FromCircle", true);
+
+        for(int i = 0; i < 3; ++i){
+            Vector2 spawnPoint = GetRandomSpawnPoint();
+            GameObject mob = Instantiate(mobPrefab, spawnPoint, Quaternion.identity);
+            spawnedCount++;
+            Enemyes.Add(mob);
+            yield return new WaitForSeconds(1f);
+        }
         yield return new WaitForSeconds(1f);
-        anim.SetBool("FromCircle", false);
-        CircleAttackIsStarted = false;
-   }
+        anim.SetBool("ToPriziv", false);
+    }
+
+    private Vector2 GetRandomSpawnPoint()
+    {
+        Vector2 size = spawnArea.bounds.size;
+        Vector2 center = spawnArea.bounds.center;
+        float randomX = Random.Range(-size.x / 2f, size.x / 2f);
+        float randomY = Random.Range(-size.y / 2f, size.y / 2f);
+        return new Vector2(center.x + randomX, center.y + randomY);
+    }
 }

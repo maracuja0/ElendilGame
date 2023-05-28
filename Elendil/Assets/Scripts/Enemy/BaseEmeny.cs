@@ -16,7 +16,9 @@ public class BaseEmeny : MonoBehaviour
     private Color originalColor = Color.white; // Исходный цвет спрайта врага
 
     public bool haveAdditionalObjects;
+    public bool haveZelie;
     public GameObject additionalObject;
+    public GameObject ZeliePrefab;
     
     public bool haveDialog = false;
     public GameObject rune;
@@ -97,6 +99,9 @@ public class BaseEmeny : MonoBehaviour
         if(haveAdditionalObjects){
             additionalObject.SetActive(true);
             rune.SetActive(true);
+        }
+        if(haveZelie){
+            GameObject HPZelie = Instantiate(ZeliePrefab, transform.position, transform.rotation);
         }
         if(haveDialog){
             dialog4.startDialog();

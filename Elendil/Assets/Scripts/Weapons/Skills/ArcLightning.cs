@@ -61,7 +61,7 @@ public class ArcLightning : MonoBehaviour
 
     public void ArcLightningSkill()
     {
-        if (canShoot && nearestEnemy != null){
+        if (canShoot){
             canShoot = false;
             StartCoroutine(Shooting());
         }   
