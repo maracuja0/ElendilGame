@@ -45,6 +45,8 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+    - {fileID: 2800000, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+    - {fileID: 2800000, guid: 96a904e5f08fa734f8d014ebfd010f15, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -86,6 +88,51 @@ SpriteAtlas:
   - {fileID: 865856190, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
   - {fileID: 1182090403, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
   - {fileID: 695414794, guid: 981f278087cb42c498f32ec789c4e399, type: 3}
+  - {fileID: -211271321, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -529883493, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 1495638914, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 1601822479, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 1061036606, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 686815692, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 1927919460, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -656967851, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -780043136, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 971079441, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 1251355051, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -711640485, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -466951999, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -2072313116, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -711257634, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -598217691, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 2111968672, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -1388166725, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -1906274824, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 1031430654, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -1214513801, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -453756157, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -548250207, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 1143057415, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -874074144, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -1760879074, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 1892541195, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -704046997, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 940244245, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 146538808, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -868565249, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -305700884, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -1730695313, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 923166011, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -1402651926, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: 2002415419, guid: 91bb75d3d054d3943a589a341ac7b580, type: 3}
+  - {fileID: -337432247, guid: 96a904e5f08fa734f8d014ebfd010f15, type: 3}
+  - {fileID: -101241, guid: 96a904e5f08fa734f8d014ebfd010f15, type: 3}
+  - {fileID: -1589285562, guid: 96a904e5f08fa734f8d014ebfd010f15, type: 3}
+  - {fileID: -100119868, guid: 96a904e5f08fa734f8d014ebfd010f15, type: 3}
+  - {fileID: 1992467704, guid: 96a904e5f08fa734f8d014ebfd010f15, type: 3}
+  - {fileID: 727381417, guid: 96a904e5f08fa734f8d014ebfd010f15, type: 3}
+  - {fileID: -1188391242, guid: 96a904e5f08fa734f8d014ebfd010f15, type: 3}
+  - {fileID: 1809969653, guid: 96a904e5f08fa734f8d014ebfd010f15, type: 3}
+  - {fileID: -783796908, guid: 96a904e5f08fa734f8d014ebfd010f15, type: 3}
   m_PackedSpriteNamesToIndex:
   - textury5_29
   - textury5_35
@@ -123,6 +170,87 @@ SpriteAtlas:
   - textury5_33
   - textury5_28
   - textury5_32
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_8"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_9"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_4"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_5"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_6"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_7"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_0"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_1"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_2"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_3"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_28"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_29"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_22"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_23"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_20"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_21"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_35"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_26"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_34"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_27"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_24"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_25"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_31"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_30"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_33"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_32"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_17"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_16"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_15"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_14"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_13"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_12"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_11"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_10"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_19"
+  - "\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B \u0434\u043B\u044F 2 \u043B\u0432\u043B
+    1.2_18"
+  - textury_dlya_2_lvl_peschera_pol_8
+  - textury_dlya_2_lvl_peschera_pol_4
+  - textury_dlya_2_lvl_peschera_pol_5
+  - textury_dlya_2_lvl_peschera_pol_6
+  - textury_dlya_2_lvl_peschera_pol_7
+  - textury_dlya_2_lvl_peschera_pol_0
+  - textury_dlya_2_lvl_peschera_pol_1
+  - textury_dlya_2_lvl_peschera_pol_2
+  - textury_dlya_2_lvl_peschera_pol_3
   m_RenderDataMap: {}
   m_Tag: Polyana
   m_IsVariant: 0

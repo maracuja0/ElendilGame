@@ -53,7 +53,7 @@ public class MenuManager : MonoBehaviour
         if(PlayerPrefs.HasKey(key)){
             PlayerPrefs.DeleteAll();
         }
-        StartCoroutine(LoadingScreenOnFade(1));
+        StartCoroutine(LoadingScreenOnFade(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void QuiteGame(){

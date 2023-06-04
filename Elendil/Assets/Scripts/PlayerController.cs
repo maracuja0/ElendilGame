@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public Animator anim;
     public FixedJoystick joystick;
-    private Vector2 direction;
+    public Vector2 direction;
     public int maxHealth = 10;
     public float currentHealth = 0f;
 

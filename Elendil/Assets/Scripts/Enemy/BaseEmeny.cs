@@ -97,7 +97,9 @@ public class BaseEmeny : MonoBehaviour
     private void Die() {
         Destroy(gameObject);
         if(haveAdditionalObjects){
-            additionalObject.SetActive(true);
+            if(additionalObject != null){
+                additionalObject.SetActive(true);
+            }
             rune.SetActive(true);
         }
         if(haveZelie){

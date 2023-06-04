@@ -28,7 +28,7 @@ public class Death_menu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        StartCoroutine(LoadingScreenOnFade(0));
+        StartCoroutine(LoadingScreenOnFade(1));
     }
     public void RestartGame()
     {

@@ -8,6 +8,9 @@ public class GameButtonsController : MonoBehaviour
     public Button attackButton;
 
     public GameObject arcLightningButton;
+
+    public GameObject thunderButton;
+    public Button thunder;
     public PlayerController player;
     public void Start()
     {
@@ -30,5 +33,10 @@ public class GameButtonsController : MonoBehaviour
     public void setDeActiveArcLightning(){
         player.canArcLightning = false;
         arcLightningButton.SetActive(false);
-    }  
+    } 
+
+    public void setActiveDisableThunder(){
+        thunderButton.SetActive(true);
+        thunder.interactable = false;
+    }
 }
