@@ -341,7 +341,11 @@ guid: 5f490486914b7c64c97bf66b1466330d
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
+<<<<<<< HEAD
 >>>>>>> e99ff2b (незакоммиченные файлы):Elendil/Assets/Sprites/steny_bossa.png.meta
+=======
+>>>>>>> e99ff2bc228b5e1e24a37ead29531a9a080ee525:Elendil/Assets/Sprites/steny_bossa.png.meta
+>>>>>>> 890c4794cfc390c08ab891a403cc0b883eee9945
   userData: 
   assetBundleName: 
   assetBundleVariant: 
