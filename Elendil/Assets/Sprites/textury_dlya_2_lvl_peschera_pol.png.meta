@@ -1,5 +1,6 @@
 fileFormatVersion: 2
 <<<<<<< HEAD:Elendil/Assets/Sprites/textury_dlya_2_lvl_peschera_pol.png.meta
+<<<<<<< HEAD:Elendil/Assets/Sprites/textury_dlya_2_lvl_peschera_pol.png.meta
 guid: 96a904e5f08fa734f8d014ebfd010f15
 TextureImporter:
   internalIDToNameTable: []
@@ -335,6 +336,12 @@ folderAsset: yes
 DefaultImporter:
   externalObjects: {}
 >>>>>>> e99ff2b (незакоммиченные файлы):Elendil/Assets/Sprites/steny_bossa.png.meta
+=======
+guid: 5f490486914b7c64c97bf66b1466330d
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> e99ff2bc228b5e1e24a37ead29531a9a080ee525:Elendil/Assets/Sprites/steny_bossa.png.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
